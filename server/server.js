@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 
 // Allow frontend access from Netlify
-app.use(cors({ origin: "https://your-actual-netlify-site.netlify.app" }));
+app.use(cors({ origin: "https://3172-lab7.netlify.app/" }));
 
 const projects = [
   { name: "Portfolio Site", description: "My personal portfolio." },
