@@ -5,7 +5,7 @@ const Weather = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("https://three172.onrender.com/api/weather")
+    fetch("https://three172-lab7.onrender.com/api/weather")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch weather data");
