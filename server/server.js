@@ -6,7 +6,9 @@ import fetch from "node-fetch";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+// Allow frontend access from Netlify
+app.use(cors({ origin: "https://your-netlify-site.netlify.app" }));
 
 const projects = [
   { name: "Portfolio Site", description: "My personal portfolio." },
@@ -23,7 +25,6 @@ app.get("/api/weather", async (req, res) => {
       `https://api.openweathermap.org/data/2.5/weather?q=Halifax,CA&units=metric&appid=${process.env.WEATHER_API_KEY}`
     );
 
-    // Log the response status and data for debugging
     console.log("Response status:", response.status);
     const data = await response.json();
     console.log("Weather data:", data);
@@ -32,7 +33,6 @@ app.get("/api/weather", async (req, res) => {
       throw new Error(data.message || "Failed to fetch weather data");
     }
 
-    // Extract city, temperature, and humidity
     res.json({
       city: data.name,
       temp: data.main.temp,
@@ -42,6 +42,12 @@ app.get("/api/weather", async (req, res) => {
     console.error("Error fetching weather:", error.message);
     res.status(500).json({ error: "Failed to fetch weather" });
   }
+});
+
+// Use Render's dynamic port if available
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 });
 
 app.listen(5000, () => console.log("Server running on port 5000"));
