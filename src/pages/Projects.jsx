@@ -4,7 +4,7 @@ const Projects = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    fetch("https://three172-lab7.onrender.com/")
+    fetch("https://three172-lab7.onrender.com/api/projects")
       .then((response) => response.json())
       .then((data) => setProjects(data))
       .catch((error) => console.error("Error fetching projects:", error));
