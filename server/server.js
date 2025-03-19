@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 
 // Allow frontend access from Netlify
-app.use(cors({ origin: "https://your-netlify-site.netlify.app" }));
+app.use(cors({ origin: "https://your-actual-netlify-site.netlify.app" }));
 
 const projects = [
   { name: "Portfolio Site", description: "My personal portfolio." },
@@ -47,8 +47,3 @@ app.get("/api/weather", async (req, res) => {
 // Use Render's dynamic port if available
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-});
-
-app.listen(5000, () => console.log("Server running on port 5000"));
-
